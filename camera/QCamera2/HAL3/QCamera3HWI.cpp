@@ -5546,12 +5546,6 @@ QCamera3HardwareInterface::translateFromHalMetadata(
                 hAeRegions->rect.height);
     }
 
-    IF_META_AVAILABLE(uint32_t, afState, CAM_INTF_META_AF_STATE, metadata) {
-        uint8_t fwk_afState = (uint8_t) *afState;
-        camMetadata.update(ANDROID_CONTROL_AF_STATE, &fwk_afState, 1);
-        LOGD("urgent Metadata : ANDROID_CONTROL_AF_STATE %u", *afState);
-    }
-
     IF_META_AVAILABLE(float, focusDistance, CAM_INTF_META_LENS_FOCUS_DISTANCE, metadata) {
         camMetadata.update(ANDROID_LENS_FOCUS_DISTANCE , focusDistance, 1);
     }
@@ -5939,6 +5933,12 @@ QCamera3HardwareInterface::translateCbUrgentMetadataToResultMetadata
         uint8_t fwk_ae_state = (uint8_t) *ae_state;
         camMetadata.update(ANDROID_CONTROL_AE_STATE, &fwk_ae_state, 1);
         LOGD("urgent Metadata : ANDROID_CONTROL_AE_STATE %u", *ae_state);
+    }
+
+    IF_META_AVAILABLE(uint32_t, afState, CAM_INTF_META_AF_STATE, metadata) {
+        uint8_t fwk_afState = (uint8_t) *afState;
+        camMetadata.update(ANDROID_CONTROL_AF_STATE, &fwk_afState, 1);
+        LOGD("urgent Metadata : ANDROID_CONTROL_AF_STATE %u", *afState);
     }
 
     IF_META_AVAILABLE(uint32_t, focusMode, CAM_INTF_PARM_FOCUS_MODE, metadata) {
@@ -7057,6 +7057,22 @@ int QCamera3HardwareInterface::initStaticMetadata(uint32_t cameraId)
 
     static const uint8_t hotPixelMapMode = ANDROID_STATISTICS_HOT_PIXEL_MAP_MODE_OFF;
     staticInfo.update(ANDROID_STATISTICS_HOT_PIXEL_MAP_MODE, &hotPixelMapMode, 1);
+
+#if 1
+    const int64_t kRequiredMinDur = 33333333;
+    for (size_t i = 0; i < MIN(MAX_SIZES_CNT,
+            gCamCapability[cameraId]->picture_sizes_tbl_cnt); i++) {
+        if (gCamCapability[cameraId]->picture_min_duration[i] > kRequiredMinDur) {
+            LOGW("Detected unsupported picture min dur %" PRId64 " for size %" PRId32 " x %" PRId32 "!!"
+                    "Sending hardcoded %" PRId64 " to avoid runtime crashes",
+                    gCamCapability[cameraId]->picture_min_duration[i],
+                    gCamCapability[cameraId]->picture_sizes_tbl[i].width,
+                    gCamCapability[cameraId]->picture_sizes_tbl[i].height,
+                    kRequiredMinDur);
+            gCamCapability[cameraId]->picture_min_duration[i] = kRequiredMinDur;
+        }
+    }
+#endif
 
     /* android.scaler.availableMinFrameDurations */
     Vector<int64_t> available_min_durations;

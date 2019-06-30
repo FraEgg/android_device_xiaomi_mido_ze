@@ -44,6 +44,7 @@ BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 BOARD_KERNEL_PAGESIZE :=  2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_KERNEL_SOURCE := kernel/xiaomi/msm8953
 
 # ANT
@@ -143,6 +144,7 @@ TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/config.fs
 
 # FM
 BOARD_HAVE_QCOM_FM := true
+TARGET_QCOM_NO_FM_FIRMWARE := true
 
 # HIDL
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(DEVICE_PATH)/vendor_framework_compatibility_matrix.xml
@@ -183,7 +185,7 @@ BOARD_USES_QCOM_HARDWARE := true
 TARGET_USE_SDCLANG := true
 
 # Recovery
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.recovery.qcom
 
 # RIL
 DISABLE_RILD_OEM_HOOK := true
