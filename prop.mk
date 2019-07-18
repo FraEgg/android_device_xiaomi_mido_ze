@@ -138,15 +138,15 @@ persist.vendor.data.mode=concurrent
 
 # Nitz
 PRODUCT_PROPERTY_OVERRIDES += \
-persist.rild.nitz_plmn="" \
-persist.rild.nitz_long_ons_0="" \
-persist.rild.nitz_long_ons_1="" \
-persist.rild.nitz_long_ons_2="" \
-persist.rild.nitz_long_ons_3="" \
-persist.rild.nitz_short_ons_0="" \
-persist.rild.nitz_short_ons_1="" \
-persist.rild.nitz_short_ons_2="" \
-persist.rild.nitz_short_ons_3=""
+persist.vendor.radio.nitz_plmn="" \
+persist.vendor.radio.nitz_lons_0="" \
+persist.vendor.radio.nitz_lons_1="" \
+persist.vendor.radio.nitz_lons_2="" \
+persist.vendor.radio.nitz_lons_3="" \
+persist.vendor.radio.nitz_sons_0="" \
+persist.vendor.radio.nitz_sons_1="" \
+persist.vendor.radio.nitz_sons_2="" \
+persist.vendor.radio.nitz_sons_3=""
 
 # Radio
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -160,6 +160,7 @@ persist.vendor.radio.custom_ecc=1 \
 persist.vendor.radio.hw_mbn_update=0 \
 persist.vendor.radio.rat_on=combine \
 persist.vendor.radio.sib16_support=1 \
+persist.vendor.radio.aosp_usr_pref_sel=true \
 ril.subscription.types=NV,RUIM \
 rild.libargs=-d/dev/smd0 \
 rild.libpath=/vendor/lib64/libril-qc-qmi-1.so \
