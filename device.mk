@@ -193,7 +193,6 @@ PRODUCT_PACKAGES += \
 # GPS
 PRODUCT_PACKAGES += \
     android.hardware.gnss@1.0-impl-qti \
-    libcurl \
     libgnss \
     libgnsspps \
     libsensorndkbridge
@@ -302,12 +301,12 @@ PRODUCT_PACKAGES += \
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
-    init.qcom.bt.sh \
     init.qcom.early_boot.sh \
     init.qcom.post_boot.sh \
     init.qcom.rc \
     init.qcom.sh \
     init.qcom.usb.rc \
+    init.qti.fm.sh \
     init.target.rc \
     ueventd.qcom.rc
 
@@ -393,6 +392,7 @@ PRODUCT_PACKAGES += \
     libcld80211 \
     libwpa_client \
     hostapd \
+    libwifi-hal-qcom \
     wpa_supplicant \
     wpa_supplicant.conf
 
