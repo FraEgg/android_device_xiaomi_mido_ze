@@ -211,3 +211,61 @@ wifi.interface=wlan0
 # Wifi-Display
 PRODUCT_PROPERTY_OVERRIDES += \
 persist.sys.wfd.virtual=0
+
+# Additional props
+PRODUCT_PROPERTY_OVERRIDES += \
+ro.vendor.qti.cgroup_follow.enable=true \
+persist.vendor.qti.inputopts.enable=true \
+persist.vendor.qti.inputopts.movetouchslop=0.6 \
+ro.qcom.adreno.qgl.ShaderStorageImageExtendedFormats=0
+
+# Higher fling velocities
+# for smoother scrolling and better responsiveness
+PRODUCT_PROPERTY_OVERRIDES += \
+ro.min.fling_velocity=160 \
+ro.max.fling_velocity=20000
+
+# Memory management tweaks
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.config.fha_enable=true \
+    ro.sys.fw.bg_apps_limit=32 \
+    ro.config.dha_cached_max=16 \
+    ro.config.dha_empty_max=42 \
+    ro.config.dha_empty_init=32 \
+    ro.config.dha_lmk_scale=0.545 \
+    ro.config.dha_th_rate=2.3 \
+    ro.config.sdha_apps_bg_max=64 \
+    ro.config.sdha_apps_bg_min=8
+
+#Screen recognizes only two fingers
+PRODUCT_PROPERTY_OVERRIDES += \
+ro.product.multi_touch_enabled=true \
+ro.product.max_num_touch=2
+
+#Dalvik Virtual Machine tweaks
+PRODUCT_PROPERTY_OVERRIDES += \
+dalvik.vm.checkjni=false \
+  dalvik.vm.dexopt-data-only=1 \
+  dalvik.vm.heapstartsize=8m \
+  dalvik.vm.heapgrowthlimit=288m \
+  dalvik.vm.heapsize=768m \
+  dalvik.vm.verify-bytecode=false \
+  dalvik.vm.execution-mode=int:jit \
+  dalvik.vm.lockprof.threshold=250 \
+  dalvik.vm.dexopt-flags=m=v,o=y \
+  dalvik.vm.stack-trace-file=/data/anr/traces.txt \
+  dalvik.vm.jmiopts=forcecopy
+  dalvik.vm.heaptargetutilization=0.75 \
+  dalvik.vm.heapminfree=512k \
+  dalvik.vm.heapmaxfree=8m
+
+#framework boost
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.at_library=true \
+    vendor.iop.enable_uxe=1 \
+    vendor.perf.iop_v3.enable=true \
+    vendor.perf.iop_v3.enable.debug=false \
+    vendor.enable.prefetch=false \
+    vendor.iop.enable_prefetch_ofr=false \
+    vendor.perf.gestureflingboost.enable=true \
+    vendor.perf.workloadclassifier.enable=true
