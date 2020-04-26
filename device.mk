@@ -82,6 +82,15 @@ PRODUCT_PACKAGES += \
     com.dsi.ant.antradio_library \
     libantradio
 
+# AndroidBw
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.product.locale.language=de_DE \
+    ro.product.locale.region=DE
+
+PRODUCT_PACKAGES += \
+	openvpn_client
+#	wireguard_client
+
 # Audio
 PRODUCT_PACKAGES += \
     android.hardware.audio@5.0-impl \
