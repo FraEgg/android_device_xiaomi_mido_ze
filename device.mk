@@ -88,7 +88,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.product.locale.region=DE
 
 PRODUCT_PACKAGES += \
-	openvpn_client
+	openvpn_client \
+	afreerdp
 #	wireguard_client
 
 # Audio
