@@ -83,13 +83,9 @@ PRODUCT_PACKAGES += \
     libantradio
 
 # AndroidBw
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.product.locale.language=de_DE \
-    ro.product.locale.region=DE
-
-PRODUCT_PACKAGES += \
-	openvpn_client \
-	afreerdp
+#PRODUCT_PACKAGES += \
+#	openvpn_client \
+#	afreerdp
 #	wireguard_client
 
 # Audio
