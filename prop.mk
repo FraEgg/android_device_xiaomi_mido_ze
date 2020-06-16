@@ -42,10 +42,6 @@ bluetooth.hfp.client=1 \
 vendor.qcom.bluetooth.soc=smd \
 ro.bluetooth.hfp.ver=1.7
 
-# Boot
-PRODUCT_PROPERTY_OVERRIDES += \
-sys.vendor.shutdown.waittime=500
-
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
 camera.display.lmax=1280x720 \
@@ -68,14 +64,15 @@ persist.debug.coresight.config=stm-events
 
 # Display
 PRODUCT_PROPERTY_OVERRIDES += \
-debug.egl.hw=1 \
+debug.egl.hw=0 \
 debug.enable.sglscale=1 \
 debug.gralloc.enable_fb_ubwc=1 \
 debug.mdpcomp.logs=0 \
 debug.sf.enable_hwc_vds=1 \
 debug.sf.hw=0 \
-debug.sf.latch_unsignaled=0 \
+debug.sf.latch_unsignaled=1 \
 debug.sf.recomputecrop=0 \
+debug.sf.disable_backpressure=1 \
 debug.sf.enable_gl_backpressure=1 \
 dev.pm.dyn_samplingrate=1 \
 persist.demo.hdmirotationlock=false \
@@ -83,20 +80,16 @@ persist.hwc.enable_vds=1 \
 persist.hwc.mdpcomp.enable=true \
 ro.opengles.version=196610 \
 ro.qualcomm.cabl=0 \
-debug.sdm.support_writeback=0 \
+ro.surface_flinger.max_frame_buffer_acquired_buffers=3 \
 ro.vendor.display.cabl=2 \
 sdm.debug.disable_skip_validate=1 \
 vendor.display.enable_default_color_mode=1 \
 vendor.display.disable_skip_validate=1 \
-vendor.gralloc.enable_fb_ubwc=1 \
-sys.display-size=1920x1080
+vendor.gralloc.enable_fb_ubwc=1
 
-# Rendering
+# DPM
 PRODUCT_PROPERTY_OVERRIDES += \
-debug.sf.disable_hwc=0 \
-debug.sf.recomputecrop=0 \
-persist.hwc.ptor.enable=true \
-debug.sf.gpu_comp_tiling=1
+persist.vendor.dpm.feature=0
 
 # DRM
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -175,20 +168,15 @@ persist.vendor.radio.custom_ecc=1 \
 persist.vendor.radio.hw_mbn_update=0 \
 persist.vendor.radio.rat_on=combine \
 persist.vendor.radio.sib16_support=1 \
-persist.vendor.radio.aosp_usr_pref_sel=true \
 ril.subscription.types=NV,RUIM \
-rild.libargs=-d/dev/smd0 \
 rild.libpath=/vendor/lib64/libril-qc-qmi-1.so \
 ro.telephony.call_ring.multiple=false \
 ro.telephony.default_network=22,22 \
-service.qti.ims.enabled=1
+service.qti.ims.enabled=1 \
+vendor.rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
 
 # SurfaceFlinger
 PRODUCT_PROPERTY_OVERRIDES += \
-debug.sf.early_phase_offset_ns=1500000 \
-debug.sf.early_app_phase_offset_ns=1500000 \
-debug.sf.early_gl_phase_offset_ns=3000000 \
-debug.sf.early_gl_app_phase_offset_ns=15000000 \
 ro.surface_flinger.force_hwc_copy_for_virtual_displays=true \
 ro.surface_flinger.max_virtual_display_dimension=4096
 
@@ -211,61 +199,3 @@ wifi.interface=wlan0
 # Wifi-Display
 PRODUCT_PROPERTY_OVERRIDES += \
 persist.sys.wfd.virtual=0
-
-# Additional props
-PRODUCT_PROPERTY_OVERRIDES += \
-ro.vendor.qti.cgroup_follow.enable=true \
-persist.vendor.qti.inputopts.enable=true \
-persist.vendor.qti.inputopts.movetouchslop=0.6 \
-ro.qcom.adreno.qgl.ShaderStorageImageExtendedFormats=0
-
-# Higher fling velocities
-# for smoother scrolling and better responsiveness
-PRODUCT_PROPERTY_OVERRIDES += \
-ro.min.fling_velocity=160 \
-ro.max.fling_velocity=20000
-
-# Memory management tweaks
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.fha_enable=true \
-    ro.sys.fw.bg_apps_limit=32 \
-    ro.config.dha_cached_max=16 \
-    ro.config.dha_empty_max=42 \
-    ro.config.dha_empty_init=32 \
-    ro.config.dha_lmk_scale=0.545 \
-    ro.config.dha_th_rate=2.3 \
-    ro.config.sdha_apps_bg_max=64 \
-    ro.config.sdha_apps_bg_min=8
-
-#Screen recognizes only two fingers
-PRODUCT_PROPERTY_OVERRIDES += \
-ro.product.multi_touch_enabled=true \
-ro.product.max_num_touch=2
-
-#Dalvik Virtual Machine tweaks
-PRODUCT_PROPERTY_OVERRIDES += \
-dalvik.vm.checkjni=false \
-  dalvik.vm.dexopt-data-only=1 \
-  dalvik.vm.heapstartsize=8m \
-  dalvik.vm.heapgrowthlimit=288m \
-  dalvik.vm.heapsize=768m \
-  dalvik.vm.verify-bytecode=false \
-  dalvik.vm.execution-mode=int:jit \
-  dalvik.vm.lockprof.threshold=250 \
-  dalvik.vm.dexopt-flags=m=v,o=y \
-  dalvik.vm.stack-trace-file=/data/anr/traces.txt \
-  dalvik.vm.jmiopts=forcecopy
-  dalvik.vm.heaptargetutilization=0.75 \
-  dalvik.vm.heapminfree=512k \
-  dalvik.vm.heapmaxfree=8m
-
-#framework boost
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.at_library=true \
-    vendor.iop.enable_uxe=1 \
-    vendor.perf.iop_v3.enable=true \
-    vendor.perf.iop_v3.enable.debug=false \
-    vendor.enable.prefetch=false \
-    vendor.iop.enable_prefetch_ofr=false \
-    vendor.perf.gestureflingboost.enable=true \
-    vendor.perf.workloadclassifier.enable=true
