@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2018 The Asus-SDM660 Project
+ * Copyright (C) 2017-2021 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +25,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
 
 import org.lineageos.settings.preferences.CustomSeekBarPreference;
+import org.lineageos.settings.preferences.FileUtils;
 
 import org.lineageos.settings.R;
 
@@ -60,15 +62,15 @@ public class SoundControlSettings extends PreferenceFragment implements
         final String key = preference.getKey();
         switch (key) {
             case PREF_HEADPHONE_GAIN:
-                SoundControlFileUtils.setValue(HEADPHONE_GAIN_PATH, value + " " + value);
+                FileUtils.setValue(HEADPHONE_GAIN_PATH, value + " " + value);
                 break;
 
             case PREF_MICROPHONE_GAIN:
-                SoundControlFileUtils.setValue(MICROPHONE_GAIN_PATH, (int) value);
+                FileUtils.setValue(MICROPHONE_GAIN_PATH, (int) value);
                 break;
 
             case PREF_SPEAKER_GAIN:
-                 SoundControlFileUtils.setValue(SPEAKER_GAIN_PATH, (int) value);
+                 FileUtils.setValue(SPEAKER_GAIN_PATH, (int) value);
                 break;
             default:
                 break;

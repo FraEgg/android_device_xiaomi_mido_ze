@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright (C) 2018 The Asus-SDM660 Project
+     Copyright (C) 2017-2021 The LineageOS Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -20,7 +21,7 @@
         android:key="audio">
 
         <org.lineageos.settings.preferences.SecureSettingCustomSeekBarPreference
-            android:defaultValue="0"
+            android:defaultValue="-10"
             android:key="headphone_gain"
             android:max="20"
             app:min="-40"

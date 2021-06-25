@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2018 The Asus-SDM660 Project
+ * Copyright (C) 2017-2021 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +15,13 @@
  * limitations under the License
  */
 
-package org.lineageos.settings.soundcontrol;
+package org.lineageos.settings.preferences;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public final class SoundControlFileUtils {
+public final class FileUtils {
 
     public static boolean fileWritable(String filename) {
         return fileExists(filename) && new File(filename).canWrite();
